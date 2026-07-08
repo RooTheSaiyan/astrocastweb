@@ -31,7 +31,7 @@ main { position: relative; z-index: 1; }
 .soundwave span { width: 4px; height: var(--h, 40%); background: linear-gradient(180deg, #35d4ff, #b96bff, #ff3ec8); border-radius: 2px; animation: bar 1.2s ease-in-out infinite; }
   @keyframes bar { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1); } }
 
-  .logo-text { font-size: 64px; line-height: 1.05; font-weight: 900; letter-spacing: 1px; }
+    .logo-text { font-size: clamp(32px, 11vw, 64px); line-height: 1.05; font-weight: 900; letter-spacing: 1px; padding: 0 10px; word-break: keep-all; }
 .logo-text .pink { color: #ff3ec8; text-shadow: 0 0 10px #ff3ec8, 0 0 30px #ff3ec8, 0 0 60px #a8006b; }
 .logo-text .blue { color: #35d4ff; text-shadow: 0 0 10px #35d4ff, 0 0 30px #35d4ff, 0 0 70px #0077a8; }
 .tagline { max-width: 560px; margin: 22px auto 0; font-size: 19px; color: #b9c8e0; font-weight: 600; }
