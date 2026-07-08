@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Astrocast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600;700&display=swap">
+  <style>
+  * { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #05010e; color: #eaf6ff; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+h1, h2 { font-family: 'Orbitron', sans-serif; margin: 0; }
+.stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.stars i { position: absolute; background: #fff; border-radius: 50%; display: block; animation: twinkle linear infinite; }
+@keyframes twinkle { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+
+.nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 18px 40px; background: rgba(5,1,14,0.7); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+.brand { font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 700; }
+.brand-text .pink { color: #ff3ec8; }
+.brand-text .blue { color: #35d4ff; }
+.nav-links { display: flex; gap: 26px; font-weight: 600; letter-spacing: .5px; }
+.nav-links a { transition: color .2s, text-shadow .2s; }
+.nav-links a:hover { color: #ff3ec8; text-shadow: 0 0 8px #ff3ec8; }
+  .merch-link { color: #35d4ff; }
+
+main { position: relative; z-index: 1; }
+
+.hero { text-align: center; padding: 90px 20px 60px; }
+.soundwave { display: flex; justify-content: center; align-items: flex-end; gap: 4px; height: 60px; margin-bottom: 10px; opacity: .8; }
+.soundwave span { width: 4px; height: var(--h, 40%); background: linear-gradient(180deg, #35d4ff, #b96bff, #ff3ec8); border-radius: 2px; animation: bar 1.2s ease-in-out infinite; }
+  @keyframes bar { 0%, 100% { transform: scaleY(0.4); } 50% { transform: scaleY(1); } }
+
+  .logo-text { font-size: 64px; line-height: 1.05; font-weight: 900; letter-spacing: 1px; }
+.logo-text .pink { color: #ff3ec8; text-shadow: 0 0 10px #ff3ec8, 0 0 30px #ff3ec8, 0 0 60px #a8006b; }
+.logo-text .blue { color: #35d4ff; text-shadow: 0 0 10px #35d4ff, 0 0 30px #35d4ff, 0 0 70px #0077a8; }
+.tagline { max-width: 560px; margin: 22px auto 0; font-size: 19px; color: #b9c8e0; font-weight: 600; }
+
+.cta-row { display: flex; gap: 18px; justify-content: center; margin-top: 34px; flex-wrap: wrap; }
+.btn { padding: 14px 28px; border-radius: 40px; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: .5px; display: inline-block; transition: transform .2s, box-shadow .2s; border: 1px solid transparent; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: linear-gradient(90deg, #35d4ff, #b96bff); color: #05010e; box-shadow: 0 0 20px rgba(53,212,255,0.5); }
+  .btn-primary:hover { box-shadow: 0 0 32px rgba(53,212,255,0.85); }
+.btn-patreon { background: transparent; border-color: #ff3ec8; color: #ff3ec8; box-shadow: 0 0 14px rgba(255,62,200,0.35); }
+  .btn-patreon:hover { background: rgba(255,62,200,0.1); box-shadow: 0 0 26px rgba(255,62,200,0.7); }
+.btn-outline { background: transparent; border-color: rgba(255,255,255,0.3); color: #eaf6ff; }
+.btn-outline:hover { border-color: #35d4ff; color: #35d4ff; box-shadow: 0 0 18px rgba(53,212,255,0.4); }
+
+section { padding: 70px 20px; max-width: 980px; margin: 0 auto; }
+section h2 { text-align: center; font-size: 30px; color: #fff; text-shadow: 0 0 18px rgba(185,107,255,0.6); margin-bottom: 14px; }
+.section-sub { text-align: center; color: #b9c8e0; max-width: 560px; margin: 0 auto 36px; font-size: 16px; }
+
+.player-card { display: flex; gap: 26px; align-items: center; background: linear-gradient(145deg, rgba(53,212,255,0.08), rgba(255,62,200,0.08)); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 30px; box-shadow: 0 0 40px rgba(139,92,246,0.15) inset; flex-wrap: wrap; }
+.player-art { font-size: 54px; width: 100px; height: 100px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 16px; background: radial-gradient(circle at 30% 30%, #1b1040, #05010e); border: 1px solid rgba(255,255,255,0.15); }
+.player-info { flex: 1; min-width: 220px; }
+.player-eyebrow { color: #35d4ff; font-family: 'Orbitron', sans-serif; font-size: 13px; letter-spacing: 1px; margin-bottom: 6px; }
+.player-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #fff; }
+.wave-row { display: flex; gap: 3px; align-items: flex-end; height: 26px; margin-bottom: 14px; opacity: .5; }
+.wave-row span { width: 3px; height: var(--h, 30%); background: linear-gradient(180deg, #ff3ec8, #35d4ff); border-radius: 2px; animation-play-state: paused; }
+  .wave-row.playing span { animation: bar 1s ease-in-out infinite; animation-play-state: running; }
+.player-controls { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+.play-btn, .shuffle-btn { background: linear-gradient(90deg, #35d4ff, #b96bff); border: none; color: #05010e; width: 40px; height: 40px; border-radius: 50%; font-size: 16px; cursor: pointer; flex-shrink: 0; }
+  .shuffle-btn { background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #eaf6ff; }
+.progress-track { flex: 1; height: 6px; background: rgba(255,255,255,0.12); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #35d4ff, #ff3ec8); }
+  .time-label { font-size: 13px; color: #b9c8e0; white-space: nowrap; }
+.full-ep-link { color: #ff3ec8; font-weight: 700; font-size: 14px; }
+
+  .ep-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-bottom: 30px; }
+.ep-card { display: block; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 20px; transition: border-color .2s, transform .2s; }
+.ep-card:hover { border-color: #35d4ff; transform: translateY(-3px); }
+.ep-card-title { font-weight: 700; color: #fff; margin-bottom: 8px; }
+.ep-card-meta { color: #8ea3c4; font-size: 13px; }
+
+.about p { text-align: center; color: #cdd9ec; font-size: 17px; line-height: 1.6; max-width: 700px; margin: 0 auto; }
+
+.social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.social-card { text-align: center; padding: 22px; border-radius: 14px; font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 14px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); transition: transform .2s, box-shadow .2s; }
+.social-card:hover { transform: translateY(-3px); }
+.social-card.youtube:hover { box-shadow: 0 0 22px rgba(255,0,60,0.5); border-color: #ff003c; }
+  .social-card.facebook:hover { box-shadow: 0 0 22px rgba(53,120,255,0.5); border-color: #3578ff; }
+.social-card.patreon:hover { box-shadow: 0 0 26px rgba(255,105,0,0.55); border-color: #ff9036; }
+  .social-card.rss:hover { box-shadow: 0 0 22px rgba(53,212,255,0.5); border-color: #35d4ff; }
+
+.merch-teaser { text-align: center; }
+.merch-teaser p { color: #b9c8e0; margin-bottom: 26px; }
+
+  footer { text-align: center; padding: 30px; color: #6b7a99; font-size: 13px; border-top: 1px solid rgba(255,255,255,0.06); position: relative; z-index: 1; }
+</style>
+  </head>
+  <body>
+  <div class="stars" id="stars"></div>
+  <header class="nav">
+    <div class="brand">🔭 <span class="brand-text"><span class="pink">The</span> <span class="blue">Astrocast</span></span></div>
+    <nav class="nav-links">
+      <a href="#tune-in">Tune In</a>
+      <a href="#episodes">Episodes</a>
+      <a href="#about">About</a>
+      <a href="#connect">Connect</a>
+      <a href="/merch" class="merch-link">Merch</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="soundwave" id="heroWave"></div>
+      <h1 class="logo-text"><span class="pink">The</span><br><span class="blue">Astrocast</span></h1>
+      <p class="tagline">A weekly deep dive into astrophotography, astronomy, gear, and the people who live for dark skies.</p>
+    <div class="cta-row">
+      <a href="#tune-in" class="btn btn-primary">Tune In Now</a>
+        <a href="https://www.patreon.com/c/TheAstrocast" target="_blank" rel="noopener" class="btn btn-patreon">Join the Crew on Patreon</a>
+      </div>
+    </section>
+
+    <section class="player-section" id="tune-in">
+      <h2>Walk-In Radio</h2>
+      <p class="section-sub">Hit play and we will spin up a random episode, just like walking into the shop with the show already on the speakers.</p>
+    <div class="player-card">
+      <div class="player-art">🔭</div>
+      <div class="player-info">
+        <div class="player-eyebrow" id="playerEpisodeNum">Loading transmission...</div>
+          <div class="player-title" id="playerTitle">Tuning the dish...</div>
+          <div class="wave-row" id="playerWave"></div>
+          <audio id="audioEl" preload="none"></audio>
+          <div class="player-controls">
+            <button id="playBtn" class="play-btn">▶</button>
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+            <span id="timeLabel" class="time-label">0:00 / 0:00</span>
+            <button id="shuffleBtn" class="shuffle-btn" title="Play another random episode">🔀</button>
+          </div>
+          <a id="fullEpisodeLink" href="https://astrocast.buzzsprout.com" target="_blank" rel="noopener" class="full-ep-link">Listen to the full episode →</a>
+      </div>
+    </div>
+  </section>
+
+    <section class="episodes" id="episodes">
+      <h2>Latest Transmissions</h2>
+      <div class="ep-grid" id="epGrid"></div>
+      <a href="https://astrocast.buzzsprout.com" target="_blank" rel="noopener" class="btn btn-outline">See All 100+ Episodes</a>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About the Show</h2>
+    <p>Hosted by Christopher "Roo" Page, The Astrocast is a weekly deep dive into astrophotography and astronomy: gear talk, best practices, and interviews for backyard stargazers and Bortle-1 chasers alike.</p>
+    </section>
+
+    <section class="socials" id="connect">
+      <h2>Follow the Mission</h2>
+    <div class="social-grid">
+      <a href="https://www.youtube.com/@TheAstrocast" target="_blank" rel="noopener" class="social-card youtube">▶ YouTube</a>
+        <a href="https://www.facebook.com/TheAstrocastPod/" target="_blank" rel="noopener" class="social-card facebook">📘 Facebook</a>
+        <a href="https://www.patreon.com/c/TheAstrocast" target="_blank" rel="noopener" class="social-card patreon">🚀 Patreon</a>
+        <a href="https://feeds.buzzsprout.com/2299708.rss" target="_blank" rel="noopener" class="social-card rss">📡 RSS Feed</a>
+      </div>
+    </section>
+
+    <section class="merch-teaser">
+      <h2>Gear Up</h2>
+      <p>Astrocast merch is in the works: shirts, mugs, and more for the dark-sky faithful.</p>
+      <a href="/merch" class="btn btn-outline">Visit the Shop (coming soon)</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 The Astrocast. All signals reserved.</p>
+</footer>
+
+<script>
+  var FEED_URL = "https://feeds.buzzsprout.com/2299708.rss";
+var episodesCache = [];
+
+function escapeHtml(str) {
+    var div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function formatDuration(d) {
+    if (d.indexOf(":") !== -1) return d;
+  var secs = parseInt(d, 10);
+  if (isNaN(secs)) return "";
+  var h = Math.floor(secs / 3600);
+  var m = Math.floor((secs % 3600) / 60);
+  return h > 0 ? (h + "h " + m + "m") : (m + "m");
+}
+
+function formatTime(s) {
+    if (!isFinite(s)) return "0:00";
+  var m = Math.floor(s / 60);
+  var sec = Math.floor(s % 60);
+  return m + ":" + (sec < 10 ? "0" + sec : sec);
+}
+
+function loadFeed() {
+    return fetch(FEED_URL).then(function (res) { return res.text(); }).then(function (str) {
+          var xml = new DOMParser().parseFromString(str, "text/xml");
+    var items = Array.prototype.slice.call(xml.querySelectorAll("item"));
+    episodesCache = items.map(function (it) {
+            var titleNode = it.querySelector("title");
+      var encNode = it.querySelector("enclosure");
+      var linkNode = it.querySelector("link");
+      var pubNode = it.querySelector("pubDate");
+      var durNode = it.getElementsByTagName("itunes:duration")[0];
+      return {
+                title: titleNode ? titleNode.textContent : "Untitled Episode",
+                enclosure: encNode ? encNode.getAttribute("url") : "",
+                link: linkNode ? linkNode.textContent : FEED_URL,
+                pubDate: pubNode ? pubNode.textContent : "",
+                duration: durNode ? durNode.textContent : ""
+        };
+    }).filter(function (e) { return e.enclosure; });
+    renderLatest();
+    }).catch(function (err) { console.error("Feed load failed", err); });
+    }
+
+function renderLatest() {
+    var grid = document.getElementById("epGrid");
+  grid.innerHTML = "";
+  episodesCache.slice(0, 3).forEach(function (ep) {
+        var card = document.createElement("a");
+    card.href = ep.link;
+    card.target = "_blank";
+    card.rel = "noopener";
+    card.className = "ep-card";
+    var d = ep.pubDate ? new Date(ep.pubDate).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }) : "";
+    var metaBits = d;
+    if (ep.duration) metaBits += " • " + formatDuration(ep.duration);
+    card.innerHTML = "<div class=\"ep-card-title\">" + escapeHtml(ep.title) + "</div><div class=\"ep-card-meta\">" + metaBits + "</div>";
+    grid.appendChild(card);
+});
+}
+
+var currentEpisode = null;
+var audioEl, playBtn, titleEl, epNumEl, fullLink, progressFill, timeLabel, playerWave;
+
+function pickRandomEpisode() {
+    if (!episodesCache.length) return null;
+  return episodesCache[Math.floor(Math.random() * episodesCache.length)];
+}
+
+function loadEpisode(ep) {
+    currentEpisode = ep;
+  audioEl.src = ep.enclosure;
+  titleEl.textContent = ep.title;
+  var match = ep.title.match(/Episode\s+(\d+)/i);
+  epNumEl.textContent = match ? ("Episode " + match[1]) : "Bonus Transmission";
+  fullLink.href = ep.link;
+}
+
+function playRandom() {
+    var go = episodesCache.length ? Promise.resolve() : loadFeed();
+  go.then(function () {
+        var ep = pickRandomEpisode();
+    if (!ep) return;
+    loadEpisode(ep);
+    audioEl.play();
+  });
+}
+
+function buildWave(containerId, count) {
+    var el = document.getElementById(containerId);
+  el.innerHTML = "";
+  for (var i = 0; i < count; i++) {
+    var bar = document.createElement("span");
+    bar.style.animationDelay = (Math.random() * 1).toFixed(2) + "s";
+    bar.style.setProperty("--h", (20 + Math.random() * 80) + "%");
+    el.appendChild(bar);
+  }
+}
+
+function buildStars() {
+    var container = document.getElementById("stars");
+  var frag = document.createDocumentFragment();
+  for (var i = 0; i < 160; i++) {
+    var s = document.createElement("i");
+    s.style.left = (Math.random() * 100) + "%";
+    s.style.top = (Math.random() * 100) + "%";
+    var size = Math.random() * 2 + 1;
+    s.style.width = size + "px";
+    s.style.height = size + "px";
+    s.style.animationDuration = (2 + Math.random() * 4) + "s";
+    s.style.animationDelay = (Math.random() * 4) + "s";
+    frag.appendChild(s);
+  }
+  container.appendChild(frag);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    audioEl = document.getElementById("audioEl");
+  playBtn = document.getElementById("playBtn");
+  titleEl = document.getElementById("playerTitle");
+  epNumEl = document.getElementById("playerEpisodeNum");
+  fullLink = document.getElementById("fullEpisodeLink");
+  progressFill = document.getElementById("progressFill");
+  timeLabel = document.getElementById("timeLabel");
+  playerWave = document.getElementById("playerWave");
+
+  playBtn.addEventListener("click", function () {
+        if (!currentEpisode) { playRandom(); return; }
+    if (audioEl.paused) { audioEl.play(); } else { audioEl.pause(); }
+  });
+
+  document.getElementById("shuffleBtn").addEventListener("click", playRandom);
+
+  audioEl.addEventListener("play", function () { playBtn.textContent = "⏸"; playerWave.classList.add("playing"); });
+  audioEl.addEventListener("pause", function () { playBtn.textContent = "▶"; playerWave.classList.remove("playing"); });
+  audioEl.addEventListener("timeupdate", function () {
+        if (audioEl.duration) {
+      progressFill.style.width = (audioEl.currentTime / audioEl.duration * 100) + "%";
+      timeLabel.textContent = formatTime(audioEl.currentTime) + " / " + formatTime(audioEl.duration);
+        }
+  });
+
+  loadFeed().then(function () {
+        var ep = pickRandomEpisode();
+    if (ep) loadEpisode(ep);
+  });
+
+  buildWave("heroWave", 40);
+  buildWave("playerWave", 24);
+  buildStars();
+});
+</script>
+  </body>
+  </html>
+  
